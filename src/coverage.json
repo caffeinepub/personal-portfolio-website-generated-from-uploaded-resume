@@ -1,29 +1,49 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-06T05:53:15.663Z",
+  "generatedAt": "2026-02-06T06:27:14.100Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 0,
-    "implemented": 0,
-    "items": []
+    "total": 3,
+    "implemented": 1,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Store the resume PDF in the Motoko backend (stable state) and expose an HTTP download route that returns the PDF with appropriate headers so the browser downloads it as a file.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Seed the backend with the current resume PDF named \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" so it is available immediately after deployment without manual upload steps.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Update the frontend \"Download Resume\" button to download the resume from the backend download route (instead of /assets/resume/Hamza-Ali-Arshad-Resume-20251211-(1).pdf), while keeping the existing disabled/loading behavior when the resume is unavailable.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/portfolio/ResumeDownloadButton.tsx",
+          "frontend/src/hooks/useAssetAvailability.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/portfolio/ResumeDownloadButton.tsx"
+        ]
+      }
+    ]
   },
   "changedFiles": [
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
-    "frontend/src/components/portfolio/CertificationsSection.tsx",
-    "frontend/src/components/portfolio/ContactSection.tsx",
-    "frontend/src/components/portfolio/ExperienceSection.tsx",
-    "frontend/src/components/portfolio/HeroSection.tsx",
-    "frontend/src/components/portfolio/HighlightsSection.tsx",
-    "frontend/src/components/portfolio/LanguagesSection.tsx",
-    "frontend/src/components/portfolio/SkillsSection.tsx",
-    "frontend/src/components/portfolio/TopNav.tsx",
-    "frontend/src/pages/PortfolioPage.tsx",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/portfolio/ResumeDownloadButton.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

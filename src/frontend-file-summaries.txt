@@ -4,7 +4,7 @@
   "frontend/src/content/resumeContent.ts": "Typed resume content model with accurate professional information for Hamza Ali Arshad including medical billing experience, education, skills, training, and contact details.",
   "frontend/src/components/portfolio/TopNav.tsx": "Sticky navigation header with logo, desktop menu links including new sections (certifications, languages), mobile sheet menu, and contact CTA button.",
   "frontend/src/components/portfolio/HeroSection.tsx": "Enhanced hero section with professional badges, background image, name, title, summary, and CTAs for contact and resume download.",
-  "frontend/src/components/portfolio/ResumeDownloadButton.tsx": "Download resume button with asset availability check and graceful fallback for missing files.",
+  "frontend/src/components/portfolio/ResumeDownloadButton.tsx": "Download resume button that fetches the PDF from the backend HTTP download route with availability check and graceful fallback states (Loading, Unavailable, Download).",
   "frontend/src/hooks/useAssetAvailability.ts": "Custom hook to check if a public asset exists at runtime using HEAD request.",
   "frontend/src/components/portfolio/SectionShell.tsx": "Reusable section wrapper providing consistent layout, heading styles, and anchor IDs for all portfolio sections.",
   "frontend/src/components/portfolio/ExperienceSection.tsx": "Experience section with enhanced presentation including \"Current Role\" badge, structured responsibilities header, and improved visual hierarchy.",

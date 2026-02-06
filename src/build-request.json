@@ -1,10 +1,72 @@
 {
   "kind": "build_request",
-  "title": "Untitled request",
+  "title": "Serve resume PDF from backend and trigger direct download from button",
   "priority": "normal",
-  "requirements": [],
-  "constraints": [],
-  "nonGoals": [],
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Store the resume PDF in the Motoko backend (stable state) and expose an HTTP download route that returns the PDF with appropriate headers so the browser downloads it as a file.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Buddy, could you please upload this resume at the backend, and if anyone click the download resume button, my resume directly get's downloaded"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend persists a single resume file (bytes/blob) in stable state so it survives canister upgrades.",
+        "Backend exposes an HTTP route (via http_request) such that requesting it returns status 200, Content-Type: application/pdf, and a Content-Disposition header set to attachment with a PDF filename.",
+        "If the resume has not been set/seeded, the HTTP route returns a non-200 response (e.g., 404) rather than an empty PDF."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Seed the backend with the current resume PDF named \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" so it is available immediately after deployment without manual upload steps.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "upload this resume at the backend"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After deployment, the backend download route serves a valid PDF without requiring any post-deploy canister calls.",
+        "The served filename matches \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" (or is clearly set in Content-Disposition as that name)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Update the frontend \"Download Resume\" button to download the resume from the backend download route (instead of /assets/resume/Hamza-Ali-Arshad-Resume-20251211-(1).pdf), while keeping the existing disabled/loading behavior when the resume is unavailable.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "if anyone click the download resume button, my resume directly get's downloaded"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking the \"Download Resume\" button triggers a direct browser download of the PDF served by the backend route.",
+        "The availability check (HEAD) targets the backend download route and correctly disables the button when the backend route is unavailable/non-200.",
+        "All user-facing button text remains in English (e.g., \"Download Resume\", \"Loading...\", \"Resume Unavailable\")."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
+    "Only generate backend/migration.mo if required to preserve existing stable state on upgrade.",
+    "Do not edit files under frontend/src/components/ui or any frontend immutablePaths listed in SYSTEM_CONTEXT."
+  ],
+  "nonGoals": [
+    "Adding authentication/authorization flows for downloading the resume.",
+    "Adding a resume upload UI for end-users (beyond seeding the file during build).",
+    "Changing portfolio content beyond wiring the download behavior."
+  ],
   "imageRequirements": {
     "required": [],
     "edits": []

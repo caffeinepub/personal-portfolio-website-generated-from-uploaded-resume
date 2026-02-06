@@ -1,75 +1,48 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-06T05:53:15.661Z",
-  "summary": "BuildRequest contains no stated requirements or acceptance criteria. The diff introduces multiple new UI sections/components and enhancements to a portfolio page, which are not grounded in any explicit request.",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-06T06:27:14.097Z",
+  "summary": "Frontend resume button was updated to point to a presumed backend download route and keep loading/unavailable states, but no backend implementation or seeding of the PDF is shown in the diff. Additionally, the frontend sets a different downloaded filename than requested.",
+  "missing_requirements": [
     {
-      "description": "Added new portfolio sections/components: CertificationsSection, HighlightsSection, and LanguagesSection and integrated them into PortfolioPage navigation and layout.",
-      "reason": "No requirements were provided in the BuildRequest; these additions are new scope without an explicit request.",
+      "id": "REQ-1",
+      "requirement": "Store the resume PDF in the Motoko backend (stable state) and expose an HTTP download route that returns the PDF with appropriate headers so the browser downloads it as a file.",
+      "reason": "The diff contains no backend Motoko changes (no backend/main.mo updates) implementing stable storage of the PDF or an http_request route returning application/pdf with Content-Disposition attachment, nor a non-200 response when unset.",
       "evidence": [
-        "frontend/src/components/portfolio/CertificationsSection.tsx",
-        "frontend/src/components/portfolio/HighlightsSection.tsx",
-        "frontend/src/components/portfolio/LanguagesSection.tsx",
-        "frontend/src/pages/PortfolioPage.tsx",
-        "frontend/src/components/portfolio/TopNav.tsx"
+        "MODIFIED FILES list contains only frontend/src/components/portfolio/ResumeDownloadButton.tsx, frontend-file-summaries.txt, project_state.json"
       ]
     },
     {
-      "description": "Enhanced hero section with badges, background image, smooth scroll CTA, and resume download button usage.",
-      "reason": "Not requested (BuildRequest lists no requirements).",
+      "id": "REQ-2",
+      "requirement": "Seed the backend with the current resume PDF named \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" so it is available immediately after deployment without manual upload steps.",
+      "reason": "No backend code or asset seeding changes are shown; the diff does not include any added PDF bytes/blob or initialization in stable state.",
       "evidence": [
-        "frontend/src/components/portfolio/HeroSection.tsx"
+        "MODIFIED FILES list contains only frontend/src/components/portfolio/ResumeDownloadButton.tsx, frontend-file-summaries.txt, project_state.json"
       ]
     },
     {
-      "description": "Enhanced contact section with conditional contact items (phone/linkedin/github/website), clickable cards, external-link behavior, and expanded CTA copy.",
-      "reason": "Not requested (BuildRequest lists no requirements).",
+      "id": "REQ-3",
+      "requirement": "Update the frontend \"Download Resume\" button to download the resume from the backend download route while keeping existing disabled/loading behavior; served filename matches the specified PDF name via Content-Disposition.",
+      "reason": "The button points to a backend-like route and retains loading/unavailable UI, but the anchor sets download=\"Hamza-Ali-Arshad-Resume.pdf\", which does not match the required filename \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" and may override the backend-provided filename.",
       "evidence": [
-        "frontend/src/components/portfolio/ContactSection.tsx"
-      ]
-    },
-    {
-      "description": "Modified experience and skills sections for new visual hierarchy and added labels/badges (e.g., \"Current Role\"), plus additional descriptive copy.",
-      "reason": "Not requested (BuildRequest lists no requirements).",
-      "evidence": [
-        "frontend/src/components/portfolio/ExperienceSection.tsx",
-        "frontend/src/components/portfolio/SkillsSection.tsx"
-      ]
-    },
-    {
-      "description": "Introduced/updated resumeContent-driven dynamic rendering across sections and added/expanded structured resume content (training, languages, etc.).",
-      "reason": "Not requested (BuildRequest lists no requirements).",
-      "evidence": [
-        "frontend-file-summaries.txt (resumeContent.ts entry)",
-        "frontend/src/components/portfolio/CertificationsSection.tsx",
-        "frontend/src/components/portfolio/LanguagesSection.tsx",
-        "frontend/src/components/portfolio/ContactSection.tsx",
-        "frontend/src/components/portfolio/HeroSection.tsx"
-      ]
-    },
-    {
-      "description": "Added runtime asset availability checking (useAssetAvailability hook) and \"ResumeDownloadButton\" behavior per file summaries.",
-      "reason": "Not requested (BuildRequest lists no requirements).",
-      "evidence": [
-        "frontend-file-summaries.txt (ResumeDownloadButton.tsx entry)",
-        "frontend-file-summaries.txt (useAssetAvailability.ts entry)"
+        "frontend/src/components/portfolio/ResumeDownloadButton.tsx: RESUME_DOWNLOAD_URL = '/download/Hamza-Ali-Arshad-Resume-20251211-(1).pdf'",
+        "frontend/src/components/portfolio/ResumeDownloadButton.tsx: <a href={RESUME_DOWNLOAD_URL} download=\"Hamza-Ali-Arshad-Resume.pdf\">"
       ]
     }
   ],
-  "confidence": 0.86,
+  "hallucinated_features": [
+    {
+      "description": "Frontend forces the downloaded filename to \"Hamza-Ali-Arshad-Resume.pdf\" via the HTML download attribute.",
+      "reason": "The BuildRequest specifies the served filename should match \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" (via Content-Disposition), but the diff adds a different hardcoded filename on the frontend download attribute.",
+      "evidence": [
+        "frontend/src/components/portfolio/ResumeDownloadButton.tsx: download=\"Hamza-Ali-Arshad-Resume.pdf\""
+      ]
+    }
+  ],
+  "confidence": 0.74,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/portfolio/CertificationsSection.tsx",
-    "frontend/src/components/portfolio/ContactSection.tsx",
-    "frontend/src/components/portfolio/ExperienceSection.tsx",
-    "frontend/src/components/portfolio/HeroSection.tsx",
-    "frontend/src/components/portfolio/HighlightsSection.tsx",
-    "frontend/src/components/portfolio/LanguagesSection.tsx",
-    "frontend/src/components/portfolio/SkillsSection.tsx",
-    "frontend/src/components/portfolio/TopNav.tsx",
-    "frontend/src/pages/PortfolioPage.tsx",
+    "frontend/src/components/portfolio/ResumeDownloadButton.tsx",
     "project_state.json"
   ]
 }

@@ -1,20 +1,47 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "New project",
-  "architectural_notes": [],
+  "summary": "Portfolio website hosted at https://HamzaAliportfolio0035.icp0.io with a custom domain name, and plans to support direct resume download via a \"Download Resume\" button.",
+  "architectural_notes": [
+    "Project publicly accessible via URL: https://HamzaAliportfolio0035.icp0.io"
+  ],
   "known_issues": [],
   "isFixRequest": false,
-  "existing_features": [],
+  "existing_features": [
+    {
+      "id": "feature-update-the-frontend-download-resume-button-to-download-the-resume-from-the-backend-download-route-instead-of-assets-resume-hamza-ali-arshad-resume-20251211-1-pdf-while-keeping-the-existing-disabled-loading-behavior-when-the-resume-is-unavailable",
+      "title": "Update the frontend \"Download Resume\" button to download the resume from the backend download route (instead of /assets/resume/Hamza-Ali-Arshad-Resume-20251211-(1).pdf), while keeping the existing disabled/loading behavior when the resume is unavailable.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    }
+  ],
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add recruiter-friendly extra details to the user's content without changing the user's original details",
+      "summary": "Upload resume file to backend and make \"Download Resume\" button trigger direct file download",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Store the resume PDF in the Motoko backend (stable state) and expose an HTTP download route that returns the PDF with appropriate headers so the browser downloads it as a file.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Seed the backend with the current resume PDF named \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" so it is available immediately after deployment without manual upload steps.",
+      "reqIds": [
+        "REQ-2"
+      ],
       "status": "pending"
     }
   ],
-  "projectName": "Untitled request",
+  "projectName": "HamzaAliportfolio0035",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

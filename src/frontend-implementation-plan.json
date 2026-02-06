@@ -1,6 +1,28 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Untitled request",
-  "requirements": []
+  "title": "Wire Resume download button to backend-served PDF route",
+  "requirements": [
+    {
+      "id": "REQ-3",
+      "summary": "Update the ResumeDownloadButton to check and download the resume from the backend HTTP download route instead of the bundled /assets PDF, while preserving existing loading/disabled states and English button text.",
+      "acceptanceCriteria": [
+        "Clicking the \"Download Resume\" button triggers a direct browser download of the PDF served by the backend route.",
+        "The availability check (HEAD) targets the backend download route and correctly disables the button when the backend route is unavailable/non-200.",
+        "All user-facing button text remains in English (e.g., \"Download Resume\", \"Loading...\", \"Resume Unavailable\")."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/portfolio/ResumeDownloadButton.tsx",
+          "operation": "modify",
+          "description": "Replace the hardcoded /assets/resume/... PDF path with the backend HTTP download route path constant, and ensure the rendered <a> uses that backend route URL so clicking triggers a direct browser download while keeping the same Loading/Unavailable/Download button states and English labels."
+        },
+        {
+          "path": "frontend/src/hooks/useAssetAvailability.ts",
+          "operation": "modify",
+          "description": "Ensure the HEAD availability check is used against the backend resume download route (passed in as the hook argument) and continues to treat any non-2xx response as unavailable so the button remains disabled when the backend route is missing or returns non-200."
+        }
+      ]
+    }
+  ]
 }
