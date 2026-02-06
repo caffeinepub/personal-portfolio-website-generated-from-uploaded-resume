@@ -1,0 +1,22 @@
+{
+  "frontend/src/App.tsx": "Main app component that renders the PortfolioPage as the root view.",
+  "frontend/src/pages/PortfolioPage.tsx": "Single-page portfolio layout composing all sections including new highlights, certifications, and languages sections with navigation and footer.",
+  "frontend/src/content/resumeContent.ts": "Typed resume content model with accurate professional information for Hamza Ali Arshad including medical billing experience, education, skills, training, and contact details.",
+  "frontend/src/components/portfolio/TopNav.tsx": "Sticky navigation header with logo, desktop menu links including new sections (certifications, languages), mobile sheet menu, and contact CTA button.",
+  "frontend/src/components/portfolio/HeroSection.tsx": "Enhanced hero section with professional badges, background image, name, title, summary, and CTAs for contact and resume download.",
+  "frontend/src/components/portfolio/ResumeDownloadButton.tsx": "Download resume button with asset availability check and graceful fallback for missing files.",
+  "frontend/src/hooks/useAssetAvailability.ts": "Custom hook to check if a public asset exists at runtime using HEAD request.",
+  "frontend/src/components/portfolio/SectionShell.tsx": "Reusable section wrapper providing consistent layout, heading styles, and anchor IDs for all portfolio sections.",
+  "frontend/src/components/portfolio/ExperienceSection.tsx": "Experience section with enhanced presentation including \"Current Role\" badge, structured responsibilities header, and improved visual hierarchy.",
+  "frontend/src/components/portfolio/ProjectsSection.tsx": "Projects section showing project cards in a responsive grid with descriptions, bullets, technology badges, and links.",
+  "frontend/src/components/portfolio/SkillsSection.tsx": "Skills section with checkmark icons, organized competency cards, and professional development statement for recruiter appeal.",
+  "frontend/src/components/portfolio/EducationSection.tsx": "Education section displaying academic credentials with institution, degree, dates, and details.",
+  "frontend/src/components/portfolio/ContactSection.tsx": "Enhanced contact section with detailed call-to-action message, clickable contact cards, and professional connection invitation.",
+  "frontend/src/components/portfolio/Footer.tsx": "Responsive footer with copyright, caffeine.ai attribution, and conditional social media links.",
+  "frontend/src/index.css": "Global styles with warm neutral OKLCH color system for light/dark modes and smooth scroll behavior.",
+  "frontend/tailwind.config.js": "Tailwind configuration with Inter font family and extended theme tokens matching the warm neutral design system.",
+  "frontend/src/hooks/useQueries.ts": "Empty placeholder file as portfolio uses static content without backend queries.",
+  "frontend/src/components/portfolio/HighlightsSection.tsx": "Key metrics showcase section displaying professional highlights in cards with icons (practices managed, specialization, experience, tech skills).",
+  "frontend/src/components/portfolio/CertificationsSection.tsx": "Dedicated certifications and training section displaying formal training with badges and additional qualifications list for recruiter visibility.",
+  "frontend/src/components/portfolio/LanguagesSection.tsx": "Languages proficiency section showing multilingual capabilities with visual indicators and proficiency badges."
+}

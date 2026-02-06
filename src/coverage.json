@@ -1,0 +1,32 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-06T05:53:15.663Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 0,
+    "implemented": 0,
+    "items": []
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend/src/components/portfolio/CertificationsSection.tsx",
+    "frontend/src/components/portfolio/ContactSection.tsx",
+    "frontend/src/components/portfolio/ExperienceSection.tsx",
+    "frontend/src/components/portfolio/HeroSection.tsx",
+    "frontend/src/components/portfolio/HighlightsSection.tsx",
+    "frontend/src/components/portfolio/LanguagesSection.tsx",
+    "frontend/src/components/portfolio/SkillsSection.tsx",
+    "frontend/src/components/portfolio/TopNav.tsx",
+    "frontend/src/pages/PortfolioPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
