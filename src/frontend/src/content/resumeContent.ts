@@ -68,16 +68,39 @@ export const resumeContent: ResumeContent = {
       location: 'Lahore, Pakistan',
       period: 'Sep 2024 - Present',
       bullets: [
-        'Managing Denial Management for 22 U.S. practices',
+        'Managing Denial Management and AR follow-ups for multiple U.S. practices',
         'Resolving rejections and improving clean-claim performance',
-        'Handling E&B, Payment Posting, and Charge Entry',
-        'Communicating with providers/payers for quick reimbursements',
-        'Using Waystar, Office Ally, eProviderSolutions & multiple EHRs',
-        'Experienced in reporting, authorization workflow, practice communication, and efficient use of billing software & tools',
+        'Handling Eligibility & Benefits, Payment Posting, and Charge Entry',
+        'Communicating with providers and payers for quick reimbursements',
+        'Experienced in reporting, authorization workflow, and practice communication',
+      ],
+    },
+    {
+      title: 'Programming & Front-End Development (Self-Learner)',
+      company: 'Independent Study',
+      location: 'Remote',
+      period: 'Ongoing',
+      bullets: [
+        'Learning C++ fundamentals including data structures and algorithms',
+        'Building responsive web designs with HTML and CSS',
+        'Practicing front-end layouts and UI structuring techniques',
+        'Applying clean code practices and modern development workflows',
+        'Exploring automation and full-stack concepts with focus on healthcare workflow optimization',
       ],
     },
   ],
   projects: [
+    {
+      title: 'Revenue Cycle Management (RCM)',
+      description: 'Medical Billing & Corporate Case',
+      bullets: [
+        'Managed end-to-end medical billing workflows for 22 U.S. practices',
+        'Handled denial management and AR follow-ups in high-volume corporate environment',
+        'Performed eligibility verification and payment posting',
+        'Ensured clean claim submission and optimized reimbursement cycles',
+      ],
+      technologies: ['Waystar', 'Office Ally', 'eProviderSolutions', 'Multiple EHRs', 'Denials', 'AR', 'Eligibility', 'Reimbursements'],
+    },
     {
       title: 'Programming / Self-Learner',
       description: 'Personal programming and web development projects',
@@ -166,7 +189,7 @@ export const resumeContent: ResumeContent = {
     { language: 'Punjabi', proficiency: 'Native' },
   ],
   contact: {
-    email: 'hamzajani0035@gmail.com',
+    email: 'claimovix0035@gmail.com',
     phone: '+92 329 4320299',
     location: 'Lahore, Defence Road, Labour Colony 54/2',
   },

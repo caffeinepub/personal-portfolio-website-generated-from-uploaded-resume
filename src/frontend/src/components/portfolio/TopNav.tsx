@@ -9,11 +9,10 @@ export default function TopNav() {
   const navItems = [
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
+    { label: 'RCM Case Studies', href: '#rcm-case-studies' },
     { label: 'Skills', href: '#skills' },
     { label: 'Certifications', href: '#certifications' },
     { label: 'Education', href: '#education' },
-    { label: 'Languages', href: '#languages' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -27,10 +26,10 @@ export default function TopNav() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between gap-4">
         <button
           onClick={() => scrollToSection('#about')}
-          className="flex items-center gap-2 transition-opacity hover:opacity-80"
+          className="flex items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
         >
           <img src="/assets/generated/portfolio-logo.dim_512x512.png" alt="Logo" className="h-8 w-8" />
           <span className="text-lg font-semibold">Portfolio</span>
@@ -42,7 +41,7 @@ export default function TopNav() {
             <button
               key={item.href}
               onClick={() => scrollToSection(item.href)}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
             >
               {item.label}
             </button>
@@ -53,7 +52,7 @@ export default function TopNav() {
           <Button
             size="sm"
             onClick={() => scrollToSection('#contact')}
-            className="hidden sm:inline-flex"
+            className="hidden sm:inline-flex transition-all hover:shadow-md"
           >
             <Mail className="mr-2 h-4 w-4" />
             Contact
@@ -62,18 +61,18 @@ export default function TopNav() {
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hover:bg-muted">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-64">
+            <SheetContent side="right" className="w-72">
               <nav className="flex flex-col gap-4 pt-8">
                 {navItems.map((item) => (
                   <SheetClose key={item.href} asChild>
                     <button
                       onClick={() => scrollToSection(item.href)}
-                      className="text-left text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                      className="text-left text-base font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-muted px-3 py-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       {item.label}
                     </button>

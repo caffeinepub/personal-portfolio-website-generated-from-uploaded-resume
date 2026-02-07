@@ -2,10 +2,49 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-frontend-download-resume-button-to-download-the-resume-from-the-backend-download-route-instead-of-assets-resume-hamza-ali-arshad-resume-20251211-1-pdf-while-keeping-the-existing-disabled-loading-behavior-when-the-resume-is-unavailable",
-      "featureTitle": "Update the frontend \"Download Resume\" button to download the resume from the backend download route (instead of /assets/resume/Hamza-Ali-Arshad-Resume-20251211-(1).pdf), while keeping the existing disabled/loading behavior when the resume is unavailable.",
+      "featureId": "feature-add-a-new-experience-entry-to-the-resume-content-for-programming-front-end-development-self-learner-using-the-user-provided-description-and-render-it-in-the-experience-section-in-a-way-that-matches-existing-experience-card-structure-title-company-period-location-bullet-list",
+      "featureTitle": "Add a new Experience entry to the resume content for “Programming & Front-End Development (Self-Learner)” using the user-provided description, and render it in the Experience section in a way that matches existing Experience card structure (title/company/period/location + bullet list).",
       "files": [
-        "frontend/src/components/portfolio/ResumeDownloadButton.tsx"
+        "frontend/src/content/resumeContent.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-new-technical-project-entry-to-the-resume-content-for-revenue-cycle-management-rcm-medical-billing-corporate-case-using-the-user-provided-scope-tools-and-focus-tags-and-render-it-as-a-project-card-in-the-technical-projects-section",
+      "featureTitle": "Add a new Technical Project entry to the resume content for “Revenue Cycle Management (RCM) — Medical Billing & Corporate Case” using the user-provided scope, tools, and focus tags, and render it as a project card in the Technical Projects section.",
+      "files": [
+        "frontend/src/content/resumeContent.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-remove-repeated-duplicated-content-across-experience-and-technical-projects-so-the-site-does-not-repeat-the-same-facts-e-g-the-22-u-s-practices-and-the-exact-tool-list-in-multiple-places-keep-the-information-once-in-the-most-appropriate-section-while-preserving-meaning-and-completeness",
+      "featureTitle": "Remove repeated/duplicated content across Experience and Technical Projects so the site does not repeat the same facts (e.g., the “22 U.S. practices” and the exact tool list) in multiple places; keep the information once in the most appropriate section while preserving meaning and completeness.",
+      "files": [
+        "frontend/src/components/portfolio/ExperienceSection.tsx",
+        "frontend/src/content/resumeContent.ts"
       ],
       "components": [
         "blob-storage@4.0.0",
@@ -17,6 +56,25 @@
       ],
       "testIds": [
         "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-section-content-and-card-layouts-are-perfectly-aligned-and-consistent-with-the-site-s-existing-professional-nature-healthcare-appropriate-theme-spacing-typography-hierarchy-and-visual-consistency-specifically-for-the-updated-experience-and-technical-projects-sections",
+      "featureTitle": "Ensure section content and card layouts are perfectly aligned and consistent with the site’s existing professional, nature/healthcare-appropriate theme (spacing, typography hierarchy, and visual consistency), specifically for the updated Experience and Technical Projects sections.",
+      "files": [
+        "frontend/src/components/portfolio/ExperienceSection.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
       ],
       "confidence": "high"
     }

@@ -72,8 +72,8 @@ export default function ContactSection() {
             const content = (
               <Card
                 key={index}
-                className={`transition-all ${
-                  item.href ? 'cursor-pointer hover:shadow-md hover:border-primary/50' : ''
+                className={`transition-all duration-200 ${
+                  item.href ? 'cursor-pointer hover:shadow-lg hover:border-primary/50 hover:-translate-y-0.5' : ''
                 }`}
               >
                 <CardContent className="flex items-center gap-4 p-6">
@@ -94,6 +94,7 @@ export default function ContactSection() {
                 href={item.href}
                 target={item.href.startsWith('http') ? '_blank' : undefined}
                 rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg"
               >
                 {content}
               </a>

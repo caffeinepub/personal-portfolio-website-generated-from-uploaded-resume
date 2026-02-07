@@ -36,7 +36,7 @@ export default function HighlightsSection() {
           {highlights.map((highlight, index) => {
             const Icon = highlight.icon;
             return (
-              <Card key={index} className="border-border/60 bg-background/50 backdrop-blur-sm transition-all hover:shadow-md">
+              <Card key={index} className="border-border/60 bg-background/50 backdrop-blur-sm transition-all duration-200 hover:shadow-lg hover:border-primary/30 hover:-translate-y-1">
                 <CardContent className="flex flex-col items-center p-6 text-center">
                   <div className="mb-3 rounded-full bg-primary/10 p-3">
                     <Icon className="h-6 w-6 text-primary" />

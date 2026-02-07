@@ -1,5 +1,5 @@
 import { Award, CheckCircle2 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import SectionShell from './SectionShell';
 import { resumeContent } from '../../content/resumeContent';
@@ -7,52 +7,54 @@ import { resumeContent } from '../../content/resumeContent';
 export default function CertificationsSection() {
   return (
     <SectionShell id="certifications" title="Certifications & Training">
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="space-y-6">
         {resumeContent.training.map((training, index) => (
-          <Card key={index} className="transition-shadow hover:shadow-md">
+          <Card key={index} className="transition-all duration-200 hover:shadow-lg hover:border-primary/30">
             <CardHeader>
               <div className="flex items-start gap-3">
-                <div className="rounded-lg bg-primary/10 p-2">
+                <div className="rounded-full bg-primary/10 p-2">
                   <Award className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1">
                   <CardTitle className="text-lg">{training.title}</CardTitle>
-                  <p className="mt-1 text-sm text-muted-foreground">{training.organization}</p>
+                  <CardDescription className="mt-1">
+                    {training.organization}
+                  </CardDescription>
                 </div>
-                <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-green-600" />
+                <Badge variant="outline">Certified</Badge>
               </div>
             </CardHeader>
-            <CardContent>
-              <Badge variant="outline" className="text-xs">
-                Professional Training
-              </Badge>
-            </CardContent>
           </Card>
         ))}
-      </div>
-      <div className="mt-8 rounded-lg border border-border/60 bg-muted/30 p-6">
-        <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold">
-          <Award className="h-5 w-5 text-primary" />
-          Additional Qualifications
-        </h3>
-        <ul className="space-y-2">
-          <li className="flex items-start gap-2 text-sm text-muted-foreground">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-            <span>Proficient in multiple EHR systems including CollaborateMD, AdvancedMD, TherapyNotes, and SimplePractice</span>
-          </li>
-          <li className="flex items-start gap-2 text-sm text-muted-foreground">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-            <span>Experienced with major clearinghouses: Waystar, Office Ally, and eProviderSolutions</span>
-          </li>
-          <li className="flex items-start gap-2 text-sm text-muted-foreground">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-            <span>Strong understanding of U.S. healthcare billing regulations and compliance requirements</span>
-          </li>
-          <li className="flex items-start gap-2 text-sm text-muted-foreground">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-            <span>Continuous learner with growing expertise in web development and programming</span>
-          </li>
-        </ul>
+
+        <Card className="border-primary/30 bg-primary/5 transition-all duration-200 hover:shadow-lg">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <CheckCircle2 className="h-5 w-5 text-primary" />
+              Professional Development
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2">
+              <li className="flex gap-2 text-sm text-muted-foreground">
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                <span>Comprehensive training in medical billing and denial management</span>
+              </li>
+              <li className="flex gap-2 text-sm text-muted-foreground">
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                <span>Proficient in ICD-10, CPT, and HCPCS coding systems</span>
+              </li>
+              <li className="flex gap-2 text-sm text-muted-foreground">
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                <span>Specialized AR and denial management expertise</span>
+              </li>
+              <li className="flex gap-2 text-sm text-muted-foreground">
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                <span>Continuous learning in web development and programming</span>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
       </div>
     </SectionShell>
   );

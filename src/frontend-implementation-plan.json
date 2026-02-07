@@ -1,26 +1,103 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Wire Resume download button to backend-served PDF route",
+  "title": "Resume content updates, deduplication, and Technical Projects desktop grid fix",
   "requirements": [
     {
-      "id": "REQ-3",
-      "summary": "Update the ResumeDownloadButton to check and download the resume from the backend HTTP download route instead of the bundled /assets PDF, while preserving existing loading/disabled states and English button text.",
+      "id": "REQ-1",
+      "summary": "Add the “Programming & Front-End Development (Self-Learner)” experience entry and render it as a standard Experience card.",
       "acceptanceCriteria": [
-        "Clicking the \"Download Resume\" button triggers a direct browser download of the PDF served by the backend route.",
-        "The availability check (HEAD) targets the backend download route and correctly disables the button when the backend route is unavailable/non-200.",
-        "All user-facing button text remains in English (e.g., \"Download Resume\", \"Loading...\", \"Resume Unavailable\")."
+        "`frontend/src/content/resumeContent.ts` includes a new `experience` entry titled exactly “Programming & Front-End Development (Self-Learner)” with bullet points derived from the provided text.",
+        "The Experience section (`frontend/src/components/portfolio/ExperienceSection.tsx`) displays the new entry as a normal experience card with the same spacing/typography as existing entries.",
+        "All user-facing text for this new entry is in English."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/portfolio/ResumeDownloadButton.tsx",
+          "path": "frontend/src/content/resumeContent.ts",
           "operation": "modify",
-          "description": "Replace the hardcoded /assets/resume/... PDF path with the backend HTTP download route path constant, and ensure the rendered <a> uses that backend route URL so clicking triggers a direct browser download while keeping the same Loading/Unavailable/Download button states and English labels."
+          "description": "Add a new `resumeContent.experience` item titled exactly “Programming & Front-End Development (Self-Learner)” with company/period/location fields populated in English and bullets derived from the provided description (C++ fundamentals, HTML/CSS responsive design, front-end layouts, UI structuring, clean code practices, ongoing learning in automation/full-stack concepts, healthcare workflow optimization focus)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add the “Revenue Cycle Management (RCM) — Medical Billing & Corporate Case” technical project and render it as a project card with tools and focus tags.",
+      "acceptanceCriteria": [
+        "`frontend/src/content/resumeContent.ts` includes a new `projects` entry with title “Revenue Cycle Management (RCM)” and description/subtitle text that clearly includes “Medical Billing & Corporate Case”.",
+        "The new project includes bullet points that cover: denial management, AR follow-ups, eligibility verification, payment posting, and clean claim submission; and includes the “22 U.S. practices” detail.",
+        "The new project includes technologies/tools badges that include: Waystar, Office Ally, eProviderSolutions, and Multiple EHRs (spelled as provided).",
+        "The new project includes “Focus” tags represented either as bullets or as technologies/badges, containing: Denials, AR, Eligibility, Reimbursements.",
+        "The Technical Projects section (`frontend/src/components/portfolio/ProjectsSection.tsx`) renders the new project card without layout overflow or misalignment."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/resumeContent.ts",
+          "operation": "modify",
+          "description": "Add a new `resumeContent.projects` item with title “Revenue Cycle Management (RCM)” and description that includes “Medical Billing & Corporate Case”, bullets covering denial management, AR follow-ups, eligibility verification, payment posting, clean claim submission, and explicitly “22 U.S. practices”; include `technologies` badges containing Waystar, Office Ally, eProviderSolutions, Multiple EHRs, plus Focus tags (Denials, AR, Eligibility, Reimbursements) as badges or bullets (keep all text in English)."
         },
         {
-          "path": "frontend/src/hooks/useAssetAvailability.ts",
+          "path": "frontend/src/components/portfolio/ProjectsSection.tsx",
           "operation": "modify",
-          "description": "Ensure the HEAD availability check is used against the backend resume download route (passed in as the hook argument) and continues to treat any non-2xx response as unavailable so the button remains disabled when the backend route is missing or returns non-200."
+          "description": "Ensure the new RCM project card displays cleanly: long tool/badge lists wrap without overflow, and card header/description spacing matches existing card styling (no layout misalignment)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Deduplicate repeated facts between Experience and Technical Projects while preserving meaning and completeness.",
+      "acceptanceCriteria": [
+        "After adding the new entries, no identical or near-identical sentences appear across `resumeContent.experience` and `resumeContent.projects` for the same claim/tooling details.",
+        "If a detail is removed to avoid duplication, the remaining location still communicates the detail clearly (no loss of key information).",
+        "The rendered Experience and Technical Projects sections do not visibly repeat the same tool list and the same “22 U.S. practices” statement in both sections."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/resumeContent.ts",
+          "operation": "modify",
+          "description": "Edit existing Experience and/or Projects bullets to remove duplicated facts across sections (specifically avoid repeating the exact “22 U.S. practices” claim and the exact tool list in both `experience` and `projects`), keeping each key detail once in the most appropriate section while maintaining clear meaning in English."
+        },
+        {
+          "path": "frontend/src/components/portfolio/ExperienceSection.tsx",
+          "operation": "modify",
+          "description": "If needed after content deduplication, refine rendering so updated Experience bullets remain readable and consistent (spacing/typography unchanged, no new UI components, and no repeated tool/metric statements introduced by formatting)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Fix Technical Projects desktop layout to show two cards per row with consistent spacing and no horizontal scrolling.",
+      "acceptanceCriteria": [
+        "On desktop widths, the Technical Projects section displays a 2-column grid when there are 2+ projects.",
+        "On mobile widths, the Technical Projects section remains single-column and readable.",
+        "Cards in the grid have consistent heights/spacing (no broken alignment or uneven gutters) and match the existing card styling used elsewhere.",
+        "No horizontal scrolling is introduced by the layout changes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/portfolio/ProjectsSection.tsx",
+          "operation": "modify",
+          "description": "Adjust the Technical Projects cards container to reliably render a 2-column grid on desktop widths (and 1-column on mobile), and ensure the grid uses consistent gutters/alignment; ensure cards stretch evenly in the grid (e.g., keep cards `h-full`/`items-stretch` behavior as needed) without introducing horizontal scrolling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Align spacing and typography for Experience and Technical Projects sections to match the existing professional theme and interaction patterns.",
+      "acceptanceCriteria": [
+        "Experience and Technical Projects sections use consistent spacing between headings, descriptions, and bullet lists (no cramped or misaligned elements).",
+        "Typography sizing/weights for titles and descriptions match existing section patterns (e.g., SectionShell heading + CardTitle/CardDescription usage).",
+        "Hover/focus states remain consistent with existing card interactions (no regressions in card borders/shadows on hover)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/portfolio/ExperienceSection.tsx",
+          "operation": "modify",
+          "description": "Normalize spacing/typography hierarchy inside Experience cards (title/meta/bullets) to match other portfolio sections, keeping existing hover/focus behavior and using only composed existing UI components (no edits under `frontend/src/components/ui`)."
+        },
+        {
+          "path": "frontend/src/components/portfolio/ProjectsSection.tsx",
+          "operation": "modify",
+          "description": "Normalize spacing/typography hierarchy inside Technical Projects cards (header/description/bullets/badges) so it matches the site’s established patterns and maintains existing hover/focus states; ensure consistent visual alignment across cards in the desktop grid."
         }
       ]
     }

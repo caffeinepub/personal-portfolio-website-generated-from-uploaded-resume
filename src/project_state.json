@@ -1,18 +1,43 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Portfolio website hosted at https://HamzaAliportfolio0035.icp0.io with a custom domain name, and plans to support direct resume download via a \"Download Resume\" button.",
-  "architectural_notes": [
-    "Project publicly accessible via URL: https://HamzaAliportfolio0035.icp0.io"
+  "summary": "Portfolio/resume website updates: add specified Experience and Technical Projects content, remove duplicated data, ensure alignment/theme consistency, and fix desktop layout so a single wide card is shown instead of two cards.",
+  "architectural_notes": [],
+  "known_issues": [
+    "Desktop/PC layout currently shows two cards instead of one wide single card in a section that should be a single card.",
+    "Potential duplicated/repeated data present on the site; needs deduplication."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-update-the-frontend-download-resume-button-to-download-the-resume-from-the-backend-download-route-instead-of-assets-resume-hamza-ali-arshad-resume-20251211-1-pdf-while-keeping-the-existing-disabled-loading-behavior-when-the-resume-is-unavailable",
-      "title": "Update the frontend \"Download Resume\" button to download the resume from the backend download route (instead of /assets/resume/Hamza-Ali-Arshad-Resume-20251211-(1).pdf), while keeping the existing disabled/loading behavior when the resume is unavailable.",
+      "id": "feature-add-a-new-experience-entry-to-the-resume-content-for-programming-front-end-development-self-learner-using-the-user-provided-description-and-render-it-in-the-experience-section-in-a-way-that-matches-existing-experience-card-structure-title-company-period-location-bullet-list",
+      "title": "Add a new Experience entry to the resume content for “Programming & Front-End Development (Self-Learner)” using the user-provided description, and render it in the Experience section in a way that matches existing Experience card structure (title/company/period/location + bullet list).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-technical-project-entry-to-the-resume-content-for-revenue-cycle-management-rcm-medical-billing-corporate-case-using-the-user-provided-scope-tools-and-focus-tags-and-render-it-as-a-project-card-in-the-technical-projects-section",
+      "title": "Add a new Technical Project entry to the resume content for “Revenue Cycle Management (RCM) — Medical Billing & Corporate Case” using the user-provided scope, tools, and focus tags, and render it as a project card in the Technical Projects section.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-repeated-duplicated-content-across-experience-and-technical-projects-so-the-site-does-not-repeat-the-same-facts-e-g-the-22-u-s-practices-and-the-exact-tool-list-in-multiple-places-keep-the-information-once-in-the-most-appropriate-section-while-preserving-meaning-and-completeness",
+      "title": "Remove repeated/duplicated content across Experience and Technical Projects so the site does not repeat the same facts (e.g., the “22 U.S. practices” and the exact tool list) in multiple places; keep the information once in the most appropriate section while preserving meaning and completeness.",
       "reqIds": [
         "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-section-content-and-card-layouts-are-perfectly-aligned-and-consistent-with-the-site-s-existing-professional-nature-healthcare-appropriate-theme-spacing-typography-hierarchy-and-visual-consistency-specifically-for-the-updated-experience-and-technical-projects-sections",
+      "title": "Ensure section content and card layouts are perfectly aligned and consistent with the site’s existing professional, nature/healthcare-appropriate theme (spacing, typography hierarchy, and visual consistency), specifically for the updated Experience and Technical Projects sections.",
+      "reqIds": [
+        "REQ-5"
       ],
       "version": 1
     }
@@ -20,28 +45,38 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Upload resume file to backend and make \"Download Resume\" button trigger direct file download",
+      "summary": "Add new Experience entry: \"Programming & Front-End Development (Self-Learner)\" with provided skills/description focused on healthcare workflow optimization",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Store the resume PDF in the Motoko backend (stable state) and expose an HTTP download route that returns the PDF with appropriate headers so the browser downloads it as a file.",
-      "reqIds": [
-        "REQ-1"
-      ],
+      "summary": "Add new Technical Project entry: \"Revenue Cycle Management (RCM) — Medical Billing & Corporate Case\" with provided workflow scope, tools, and focus tags",
+      "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Seed the backend with the current resume PDF named \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" so it is available immediately after deployment without manual upload steps.",
+      "summary": "Detect and remove repeated/duplicate data across sections; ensure content is perfectly aligned and consistent with the site’s theme",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Fix desktop layout so PC view shows a single wide card (not two cards) for the relevant section(s)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Fix the desktop (PC) layout for the Technical Projects cards so that on desktop widths the section shows two cards per row (when there are at least two projects), rather than a single wide full-width card; ensure consistent alignment and spacing with the site’s existing theme.",
       "reqIds": [
-        "REQ-2"
+        "REQ-4"
       ],
       "status": "pending"
     }
   ],
-  "projectName": "HamzaAliportfolio0035",
+  "projectName": "Update Experience and Technical Projects content, deduplicate repeated info, and fix desktop card layout",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

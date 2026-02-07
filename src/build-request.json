@@ -1,71 +1,112 @@
 {
   "kind": "build_request",
-  "title": "Serve resume PDF from backend and trigger direct download from button",
+  "title": "Update Experience and Technical Projects content, deduplicate repeated info, and fix desktop card layout",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Store the resume PDF in the Motoko backend (stable state) and expose an HTTP download route that returns the PDF with appropriate headers so the browser downloads it as a file.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Buddy, could you please upload this resume at the backend, and if anyone click the download resume button, my resume directly get's downloaded"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend persists a single resume file (bytes/blob) in stable state so it survives canister upgrades.",
-        "Backend exposes an HTTP route (via http_request) such that requesting it returns status 200, Content-Type: application/pdf, and a Content-Disposition header set to attachment with a PDF filename.",
-        "If the resume has not been set/seeded, the HTTP route returns a non-200 response (e.g., 404) rather than an empty PDF."
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Seed the backend with the current resume PDF named \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" so it is available immediately after deployment without manual upload steps.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "upload this resume at the backend"
-        ]
-      },
-      "acceptanceCriteria": [
-        "After deployment, the backend download route serves a valid PDF without requiring any post-deploy canister calls.",
-        "The served filename matches \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" (or is clearly set in Content-Disposition as that name)."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Update the frontend \"Download Resume\" button to download the resume from the backend download route (instead of /assets/resume/Hamza-Ali-Arshad-Resume-20251211-(1).pdf), while keeping the existing disabled/loading behavior when the resume is unavailable.",
+      "text": "Add a new Experience entry to the resume content for “Programming & Front-End Development (Self-Learner)” using the user-provided description, and render it in the Experience section in a way that matches existing Experience card structure (title/company/period/location + bullet list).",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-1"
         ],
         "quotes": [
-          "if anyone click the download resume button, my resume directly get's downloaded"
+          "Add this to the experience section:\n\nProgramming & Front-End Development (Self-Learner)\nC++ fundamentals, HTML/CSS responsive design, front-end layouts, UI structuring, clean code practices, and ongoing learning in automation and full-stack concepts with a focus on healthcare workflow optimization."
         ]
       },
       "acceptanceCriteria": [
-        "Clicking the \"Download Resume\" button triggers a direct browser download of the PDF served by the backend route.",
-        "The availability check (HEAD) targets the backend download route and correctly disables the button when the backend route is unavailable/non-200.",
-        "All user-facing button text remains in English (e.g., \"Download Resume\", \"Loading...\", \"Resume Unavailable\")."
+        "`frontend/src/content/resumeContent.ts` includes a new `experience` entry titled exactly “Programming & Front-End Development (Self-Learner)” with bullet points derived from the provided text.",
+        "The Experience section (`frontend/src/components/portfolio/ExperienceSection.tsx`) displays the new entry as a normal experience card with the same spacing/typography as existing entries.",
+        "All user-facing text for this new entry is in English."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a new Technical Project entry to the resume content for “Revenue Cycle Management (RCM) — Medical Billing & Corporate Case” using the user-provided scope, tools, and focus tags, and render it as a project card in the Technical Projects section.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "And this to my technical projects:\n\n🧾 Revenue Cycle Management (RCM)\n\nMedical Billing & Corporate Case\n\nManaged end-to-end medical billing workflows for 22 U.S. practices, covering denial management, AR follow-ups, eligibility verification, payment posting, and clean claim submission in a high-volume corporate environment.\n\nTools: Waystar, Office Ally, eProviderSolutions, Multiple EHRs\nFocus: Denials • AR • Eligibility • Reimbursements"
+        ]
+      },
+      "acceptanceCriteria": [
+        "`frontend/src/content/resumeContent.ts` includes a new `projects` entry with title “Revenue Cycle Management (RCM)” and description/subtitle text that clearly includes “Medical Billing & Corporate Case”.",
+        "The new project includes bullet points that cover: denial management, AR follow-ups, eligibility verification, payment posting, and clean claim submission; and includes the “22 U.S. practices” detail.",
+        "The new project includes technologies/tools badges that include: Waystar, Office Ally, eProviderSolutions, and Multiple EHRs (spelled as provided).",
+        "The new project includes “Focus” tags represented either as bullets or as technologies/badges, containing: Denials, AR, Eligibility, Reimbursements.",
+        "The Technical Projects section (`frontend/src/components/portfolio/ProjectsSection.tsx`) renders the new project card without layout overflow or misalignment."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Remove repeated/duplicated content across Experience and Technical Projects so the site does not repeat the same facts (e.g., the “22 U.S. practices” and the exact tool list) in multiple places; keep the information once in the most appropriate section while preserving meaning and completeness.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Don't repeat the data. If you, found any repeadted data remove"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After adding the new entries, no identical or near-identical sentences appear across `resumeContent.experience` and `resumeContent.projects` for the same claim/tooling details.",
+        "If a detail is removed to avoid duplication, the remaining location still communicates the detail clearly (no loss of key information).",
+        "The rendered Experience and Technical Projects sections do not visibly repeat the same tool list and the same “22 U.S. practices” statement in both sections."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Fix the desktop (PC) layout for the Technical Projects cards so that on desktop widths the section shows two cards per row (when there are at least two projects), rather than a single wide full-width card; ensure consistent alignment and spacing with the site’s existing theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "For PC it appear two cards on the screen instead of wide single card."
+        ]
+      },
+      "acceptanceCriteria": [
+        "On desktop widths, the Technical Projects section displays a 2-column grid when there are 2+ projects.",
+        "On mobile widths, the Technical Projects section remains single-column and readable.",
+        "Cards in the grid have consistent heights/spacing (no broken alignment or uneven gutters) and match the existing card styling used elsewhere.",
+        "No horizontal scrolling is introduced by the layout changes."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Ensure section content and card layouts are perfectly aligned and consistent with the site’s existing professional, nature/healthcare-appropriate theme (spacing, typography hierarchy, and visual consistency), specifically for the updated Experience and Technical Projects sections.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "it make sure every thing is perfectly aligned, site natured base. Crush it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Experience and Technical Projects sections use consistent spacing between headings, descriptions, and bullet lists (no cramped or misaligned elements).",
+        "Typography sizing/weights for titles and descriptions match existing section patterns (e.g., SectionShell heading + CardTitle/CardDescription usage).",
+        "Hover/focus states remain consistent with existing card interactions (no regressions in card borders/shadows on hover)."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
-    "Only generate backend/migration.mo if required to preserve existing stable state on upgrade.",
-    "Do not edit files under frontend/src/components/ui or any frontend immutablePaths listed in SYSTEM_CONTEXT."
+    "Do not edit files under `frontend/src/components/ui` (compose existing UI components only).",
+    "Do not edit immutable hook files: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`.",
+    "Keep all user-facing text in English.",
+    "No backend changes are required for these content/layout updates."
   ],
   "nonGoals": [
-    "Adding authentication/authorization flows for downloading the resume.",
-    "Adding a resume upload UI for end-users (beyond seeding the file during build).",
-    "Changing portfolio content beyond wiring the download behavior."
+    "Adding new backend data storage or admin CMS for editing resume content.",
+    "Changing authentication behavior (Internet Identity).",
+    "Adding new sections beyond updating Experience and Technical Projects as requested."
   ],
   "imageRequirements": {
     "required": [],

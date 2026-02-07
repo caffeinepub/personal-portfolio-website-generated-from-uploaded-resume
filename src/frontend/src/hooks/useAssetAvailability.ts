@@ -9,9 +9,23 @@ export function useAssetAvailability(assetPath: string) {
 
     const checkAsset = async () => {
       try {
-        const response = await fetch(assetPath, { method: 'HEAD' });
+        // Try HEAD request first
+        let response = await fetch(assetPath, { method: 'HEAD' });
+        
+        // If HEAD is not supported (405 Method Not Allowed) or fails, try GET with range
+        if (!response.ok && response.status === 405) {
+          // Fallback to a minimal GET request with range header to check availability
+          response = await fetch(assetPath, { 
+            method: 'GET',
+            headers: { 'Range': 'bytes=0-0' }
+          });
+        }
+        
         if (!cancelled) {
-          setIsAvailable(response.ok);
+          // Check if response is OK and content-type indicates a PDF
+          const contentType = response.headers.get('content-type');
+          const isPdf = contentType ? (contentType.includes('application/pdf') || contentType.includes('application/octet-stream')) : false;
+          setIsAvailable(response.ok && isPdf);
           setIsChecking(false);
         }
       } catch {

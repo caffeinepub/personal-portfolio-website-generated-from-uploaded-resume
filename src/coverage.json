@@ -1,39 +1,70 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-06T06:27:14.100Z",
+  "generatedAt": "2026-02-07T15:17:46.130Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 1,
+    "total": 5,
+    "implemented": 4,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Store the resume PDF in the Motoko backend (stable state) and expose an HTTP download route that returns the PDF with appropriate headers so the browser downloads it as a file.",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
+        "summary": "Add a new Experience entry to the resume content for “Programming & Front-End Development (Self-Learner)” using the user-provided description, and render it in the Experience section in a way that matches existing Experience card structure (title/company/period/location + bullet list).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/content/resumeContent.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/content/resumeContent.ts"
+        ]
       },
       {
         "id": "REQ-2",
-        "summary": "Seed the backend with the current resume PDF named \"Hamza-Ali-Arshad-Resume-20251211-(1).pdf\" so it is available immediately after deployment without manual upload steps.",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
+        "summary": "Add a new Technical Project entry to the resume content for “Revenue Cycle Management (RCM) — Medical Billing & Corporate Case” using the user-provided scope, tools, and focus tags, and render it as a project card in the Technical Projects section.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/content/resumeContent.ts",
+          "frontend/src/components/portfolio/ProjectsSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/content/resumeContent.ts"
+        ]
       },
       {
         "id": "REQ-3",
-        "summary": "Update the frontend \"Download Resume\" button to download the resume from the backend download route (instead of /assets/resume/Hamza-Ali-Arshad-Resume-20251211-(1).pdf), while keeping the existing disabled/loading behavior when the resume is unavailable.",
+        "summary": "Remove repeated/duplicated content across Experience and Technical Projects so the site does not repeat the same facts (e.g., the “22 U.S. practices” and the exact tool list) in multiple places; keep the information once in the most appropriate section while preserving meaning and completeness.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/portfolio/ResumeDownloadButton.tsx",
-          "frontend/src/hooks/useAssetAvailability.ts"
+          "frontend/src/content/resumeContent.ts",
+          "frontend/src/components/portfolio/ExperienceSection.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/portfolio/ResumeDownloadButton.tsx"
+          "frontend/src/content/resumeContent.ts",
+          "frontend/src/components/portfolio/ExperienceSection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Fix the desktop (PC) layout for the Technical Projects cards so that on desktop widths the section shows two cards per row (when there are at least two projects), rather than a single wide full-width card; ensure consistent alignment and spacing with the site’s existing theme.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/components/portfolio/ProjectsSection.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Ensure section content and card layouts are perfectly aligned and consistent with the site’s existing professional, nature/healthcare-appropriate theme (spacing, typography hierarchy, and visual consistency), specifically for the updated Experience and Technical Projects sections.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/portfolio/ExperienceSection.tsx",
+          "frontend/src/components/portfolio/ProjectsSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/portfolio/ExperienceSection.tsx"
         ]
       }
     ]
@@ -43,7 +74,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/portfolio/ResumeDownloadButton.tsx",
+    "frontend/src/components/portfolio/ExperienceSection.tsx",
+    "frontend/src/content/resumeContent.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

@@ -6,10 +6,15 @@ import { resumeContent } from '../../content/resumeContent';
 
 export default function ProjectsSection() {
   return (
-    <SectionShell id="projects" title="Projects">
+    <SectionShell id="projects" title="Technical Projects" className="bg-muted/20">
+      <div className="mb-6 text-center">
+        <p className="text-sm text-muted-foreground">
+          Additional technical projects showcasing development skills
+        </p>
+      </div>
       <div className="grid gap-6 md:grid-cols-2">
         {resumeContent.projects.map((project, index) => (
-          <Card key={index} className="flex flex-col transition-shadow hover:shadow-md">
+          <Card key={index} className="flex flex-col transition-all duration-200 hover:shadow-lg hover:border-primary/30">
             <CardHeader>
               <div className="flex items-start justify-between gap-2">
                 <CardTitle className="text-xl">{project.title}</CardTitle>
@@ -19,7 +24,7 @@ export default function ProjectsSection() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground transition-colors hover:text-foreground"
+                      className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
                       title="View on GitHub"
                     >
                       <Github className="h-5 w-5" />
@@ -30,7 +35,7 @@ export default function ProjectsSection() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground transition-colors hover:text-foreground"
+                      className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
                       title="View project"
                     >
                       <ExternalLink className="h-5 w-5" />
