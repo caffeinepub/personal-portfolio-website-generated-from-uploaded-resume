@@ -21,7 +21,7 @@ export default function RcmPortfolioSections() {
     <>
       {/* RCM Case Studies */}
       <SectionShell id="rcm-case-studies" title="RCM Case Studies">
-        <div className="space-y-6">
+        <div className="grid gap-6 sm:grid-cols-2">
           {rcmCaseStudies.map((study) => (
             <Card
               key={study.title}
