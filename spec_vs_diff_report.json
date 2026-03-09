@@ -1,0 +1,44 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-10T05:06:50.182Z",
+  "summary": "The diff clearly bumps HEADSHOT_VERSION in assetPaths.ts for cache-busting, but does not provide evidence that the actual headshot PNG assets were replaced or that all UI usages of the headshot path were de-hardcoded to use HEADSHOT_512/HEADSHOT_1280. It also introduces unrelated project tracking/summary updates.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Replace the portfolio headshot static assets under frontend/public/assets/generated with square-cropped PNGs (512x512 and 1280x1280) overwriting the existing files with the exact filenames.",
+      "reason": "No changes to the PNG files under frontend/public/assets/generated are shown in the diff summary, and no evidence is provided that the new uploaded image was used to overwrite those assets.",
+      "evidence": []
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Ensure every place the portfolio UI displays the headshot uses HEADSHOT_512 / HEADSHOT_1280 constants rather than hard-coded paths.",
+      "reason": "The diff summary only shows a change to frontend/src/content/assetPaths.ts; it does not show any portfolio component code changes or a search/removal of hard-coded '/assets/generated/portfolio-headshot' strings.",
+      "evidence": [
+        "frontend/src/content/assetPaths.ts"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Updated/added project tracking metadata unrelated to replacing headshot assets and cache busting (e.g., new_feature_requests marked pending).",
+      "reason": "BuildRequest does not ask to modify project_state.json or introduce project tracking entries.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Modified a repository summary/manifest file listing many frontend components and resume content changes unrelated to the headshot replacement request.",
+      "reason": "BuildRequest is narrowly scoped to replacing headshot images, bumping HEADSHOT_VERSION, and ensuring centralized constant usage; it does not request updating a file inventory or describing unrelated UI/resume changes.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/content/assetPaths.ts",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [
+    "Displayed site/app photo needs to be replaced with the new provided image after removing the old one."
+  ],
+  "isFixRequest": true,
+  "imageRequirements": "## Edit Images\n- Square-cropped professional headshot portrait updated from uploaded image (portfolio-headshot.dim_512x512.png > portfolio-headshot.dim_512x512.png)\n- Square-cropped high-resolution professional headshot portrait updated from uploaded image (portfolio-headshot-large.dim_1280x1280.png > portfolio-headshot-large.dim_1280x1280.png)",
+  "existing_features": [
+    {
+      "id": "feature-force-a-browser-cache-refresh-for-the-headshot-by-incrementing-the-headshot-version-value-in-frontend-src-content-assetpaths-ts-so-that-the-headshot-512-and-headshot-1280-urls-change-query-string-cache-bust-while-keeping-the-headshot-filenames-unchanged",
+      "title": "Force a browser cache refresh for the headshot by incrementing the \"HEADSHOT_VERSION\" value in \"frontend/src/content/assetPaths.ts\" so that the HEADSHOT_512 and HEADSHOT_1280 URLs change (query-string cache bust), while keeping the headshot filenames unchanged.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Replace the current site/app photo with the provided image (update displayed image after removing the old one)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Replace the portfolio headshot static assets under \"frontend/public/assets/generated\" with square-cropped PNGs derived from the newly uploaded image file \"Profile picture (2)-4.png\", overwriting the existing files using the exact filenames: (1) \"portfolio-headshot.dim_512x512.png\" (512x512) and (2) \"portfolio-headshot-large.dim_1280x1280.png\" (1280x1280).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Verify that every place the portfolio UI displays the headshot uses the centralized constants from \"frontend/src/content/assetPaths.ts\" (HEADSHOT_512 and HEADSHOT_1280) rather than any hard-coded headshot image paths, so all headshot renders benefit from cache-busting.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Replace portfolio headshot with newly uploaded image and refresh cache",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

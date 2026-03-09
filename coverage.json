@@ -1,0 +1,57 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-10T05:06:50.185Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 3,
+    "implemented": 1,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Replace the portfolio headshot static assets under \"frontend/public/assets/generated\" with square-cropped PNGs derived from the newly uploaded image file \"Profile picture (2)-4.png\", overwriting the existing files using the exact filenames: (1) \"portfolio-headshot.dim_512x512.png\" (512x512) and (2) \"portfolio-headshot-large.dim_1280x1280.png\" (1280x1280).",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/public/assets/generated/portfolio-headshot.dim_512x512.png",
+          "frontend/public/assets/generated/portfolio-headshot-large.dim_1280x1280.png"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Force a browser cache refresh for the headshot by incrementing the \"HEADSHOT_VERSION\" value in \"frontend/src/content/assetPaths.ts\" so that the HEADSHOT_512 and HEADSHOT_1280 URLs change (query-string cache bust), while keeping the headshot filenames unchanged.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/content/assetPaths.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/content/assetPaths.ts"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Verify that every place the portfolio UI displays the headshot uses the centralized constants from \"frontend/src/content/assetPaths.ts\" (HEADSHOT_512 and HEADSHOT_1280) rather than any hard-coded headshot image paths, so all headshot renders benefit from cache-busting.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/components/portfolio/HeroSection.tsx",
+          "frontend/src/components/portfolio/HeadshotLightbox.tsx"
+        ],
+        "matchedFiles": []
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/content/assetPaths.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

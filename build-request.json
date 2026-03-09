@@ -1,0 +1,87 @@
+{
+  "kind": "build_request",
+  "title": "Replace portfolio headshot with newly uploaded image and refresh cache",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Replace the portfolio headshot static assets under \"frontend/public/assets/generated\" with square-cropped PNGs derived from the newly uploaded image file \"Profile picture (2)-4.png\", overwriting the existing files using the exact filenames: (1) \"portfolio-headshot.dim_512x512.png\" (512x512) and (2) \"portfolio-headshot-large.dim_1280x1280.png\" (1280x1280).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "You was able to remove the actual, now you'll just place this image"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The file \"frontend/public/assets/generated/portfolio-headshot.dim_512x512.png\" is updated to the new uploaded photo (square crop) and remains 512x512 PNG.",
+        "The file \"frontend/public/assets/generated/portfolio-headshot-large.dim_1280x1280.png\" is updated to the new uploaded photo (square crop) and remains 1280x1280 PNG.",
+        "HeroSection displays the updated photo in the circular headshot area using the existing HEADSHOT_512 path.",
+        "The HeadshotLightbox displays the updated photo using the existing HEADSHOT_1280 path."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Force a browser cache refresh for the headshot by incrementing the \"HEADSHOT_VERSION\" value in \"frontend/src/content/assetPaths.ts\" so that the HEADSHOT_512 and HEADSHOT_1280 URLs change (query-string cache bust), while keeping the headshot filenames unchanged.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "now you'll just place this image"
+        ]
+      },
+      "acceptanceCriteria": [
+        "\"frontend/src/content/assetPaths.ts\" HEADSHOT_VERSION is increased from its current value so the resulting HEADSHOT_512/HEADSHOT_1280 strings differ from the previous build.",
+        "After a hard refresh, the site loads the new headshot without showing the previous/cached image."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Verify that every place the portfolio UI displays the headshot uses the centralized constants from \"frontend/src/content/assetPaths.ts\" (HEADSHOT_512 and HEADSHOT_1280) rather than any hard-coded headshot image paths, so all headshot renders benefit from cache-busting.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "now you'll just place this image"
+        ]
+      },
+      "acceptanceCriteria": [
+        "No portfolio components reference \"/assets/generated/portfolio-headshot\" via hard-coded strings; they use HEADSHOT_512 / HEADSHOT_1280 instead.",
+        "All headshot renders update automatically when HEADSHOT_VERSION changes."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit files under frontend/src/components/ui (read-only UI components).",
+    "Do not edit immutable hook files under frontend/src/hooks/useInternetIdentity.ts / .tsx, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx.",
+    "Backend must remain single-actor (all Motoko logic in backend/main.mo); no new backend services."
+  ],
+  "nonGoals": [
+    "Adding new portfolio sections or changing resume content.",
+    "Introducing a new authentication method beyond Internet Identity.",
+    "Adding a new backend image upload pipeline (headshot remains a static frontend asset)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": [
+      "Square-cropped professional headshot portrait updated from uploaded image (portfolio-headshot.dim_512x512.png > portfolio-headshot.dim_512x512.png)",
+      "Square-cropped high-resolution professional headshot portrait updated from uploaded image (portfolio-headshot-large.dim_1280x1280.png > portfolio-headshot-large.dim_1280x1280.png)"
+    ]
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Update portfolio headshot assets and cache-busting",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Replace generated portfolio headshot PNG assets with square-cropped versions derived from the newly uploaded image, preserving existing filenames and dimensions.",
+      "acceptanceCriteria": [
+        "The file \"frontend/public/assets/generated/portfolio-headshot.dim_512x512.png\" is updated to the new uploaded photo (square crop) and remains 512x512 PNG.",
+        "The file \"frontend/public/assets/generated/portfolio-headshot-large.dim_1280x1280.png\" is updated to the new uploaded photo (square crop) and remains 1280x1280 PNG.",
+        "HeroSection displays the updated photo in the circular headshot area using the existing HEADSHOT_512 path.",
+        "The HeadshotLightbox displays the updated photo using the existing HEADSHOT_1280 path."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/portfolio-headshot.dim_512x512.png",
+          "operation": "modify",
+          "description": "Overwrite this static asset with a square-cropped PNG derived from the uploaded source image \"Profile picture (2)-4.png\", ensuring output remains exactly 512x512 and PNG."
+        },
+        {
+          "path": "frontend/public/assets/generated/portfolio-headshot-large.dim_1280x1280.png",
+          "operation": "modify",
+          "description": "Overwrite this static asset with a square-cropped PNG derived from the uploaded source image \"Profile picture (2)-4.png\", ensuring output remains exactly 1280x1280 and PNG."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Increment HEADSHOT_VERSION to change HEADSHOT_512/HEADSHOT_1280 query strings for cache-busting while keeping filenames unchanged.",
+      "acceptanceCriteria": [
+        "\"frontend/src/content/assetPaths.ts\" HEADSHOT_VERSION is increased from its current value so the resulting HEADSHOT_512/HEADSHOT_1280 strings differ from the previous build.",
+        "After a hard refresh, the site loads the new headshot without showing the previous/cached image."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/assetPaths.ts",
+          "operation": "modify",
+          "description": "Increment the HEADSHOT_VERSION constant so HEADSHOT_512 and HEADSHOT_1280 produce new query-string URLs without changing the underlying image filenames."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Ensure all headshot renders in the portfolio UI use centralized HEADSHOT_512/HEADSHOT_1280 constants instead of hard-coded headshot paths.",
+      "acceptanceCriteria": [
+        "No portfolio components reference \"/assets/generated/portfolio-headshot\" via hard-coded strings; they use HEADSHOT_512 / HEADSHOT_1280 instead.",
+        "All headshot renders update automatically when HEADSHOT_VERSION changes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/portfolio/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Audit and update (if needed) the headshot image and lightbox trigger to ensure they exclusively reference HEADSHOT_512 and HEADSHOT_1280 imported from frontend/src/content/assetPaths.ts (no hard-coded headshot strings)."
+        },
+        {
+          "path": "frontend/src/components/portfolio/HeadshotLightbox.tsx",
+          "operation": "modify",
+          "description": "Audit and update (if needed) to ensure the lightbox never hard-codes any headshot path and relies solely on the imageSrc prop supplied by callers using HEADSHOT_1280."
+        }
+      ]
+    }
+  ]
+}
