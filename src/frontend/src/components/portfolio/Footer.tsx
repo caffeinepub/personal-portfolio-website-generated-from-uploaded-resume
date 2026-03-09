@@ -1,14 +1,18 @@
-import { Heart } from 'lucide-react';
-import { SiLinkedin, SiGithub, SiX } from 'react-icons/si';
-import { resumeContent } from '../../content/resumeContent';
+import { Heart } from "lucide-react";
+import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { resumeContent } from "../../content/resumeContent";
 
 export default function Footer() {
   const { contact, name } = resumeContent;
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    contact.linkedin && { icon: SiLinkedin, href: contact.linkedin, label: 'LinkedIn' },
-    contact.github && { icon: SiGithub, href: contact.github, label: 'GitHub' },
+    contact.linkedin && {
+      icon: SiLinkedin,
+      href: contact.linkedin,
+      label: "LinkedIn",
+    },
+    contact.github && { icon: SiGithub, href: contact.github, label: "GitHub" },
   ].filter(Boolean);
 
   return (
@@ -16,9 +20,13 @@ export default function Footer() {
       <div className="container py-8">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <div className="text-center text-sm text-muted-foreground sm:text-left">
-            <p>© {currentYear} {name}. All rights reserved.</p>
+            <p>
+              © {currentYear} {name}. All rights reserved.
+            </p>
             <p className="mt-1">
-              Built with <Heart className="inline h-3 w-3 fill-red-500 text-red-500" /> using{' '}
+              Built with{" "}
+              <Heart className="inline h-3 w-3 fill-red-500 text-red-500" />{" "}
+              using{" "}
               <a
                 href="https://caffeine.ai"
                 target="_blank"
@@ -31,12 +39,12 @@ export default function Footer() {
           </div>
           {socialLinks.length > 0 && (
             <div className="flex gap-4">
-              {socialLinks.map((link, index) => {
+              {socialLinks.map((link) => {
                 if (!link) return null;
                 const Icon = link.icon;
                 return (
                   <a
-                    key={index}
+                    key={link.label}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"

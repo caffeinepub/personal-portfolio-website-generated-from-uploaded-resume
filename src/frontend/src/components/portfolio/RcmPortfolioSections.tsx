@@ -1,8 +1,20 @@
-import { CheckCircle2, Wrench, Workflow, TrendingUp, Code2 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import SectionShell from './SectionShell';
-import { rcmCaseStudies, rcmSections } from '../../content/rcmPortfolioContent';
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  CheckCircle2,
+  Code2,
+  TrendingUp,
+  Workflow,
+  Wrench,
+} from "lucide-react";
+import { rcmCaseStudies, rcmSections } from "../../content/rcmPortfolioContent";
+import SectionShell from "./SectionShell";
 
 export default function RcmPortfolioSections() {
   return (
@@ -10,9 +22,9 @@ export default function RcmPortfolioSections() {
       {/* RCM Case Studies */}
       <SectionShell id="rcm-case-studies" title="RCM Case Studies">
         <div className="space-y-6">
-          {rcmCaseStudies.map((study, index) => (
+          {rcmCaseStudies.map((study) => (
             <Card
-              key={index}
+              key={study.title}
               className="transition-all duration-200 hover:shadow-lg hover:border-primary/30"
             >
               <CardHeader>
@@ -40,10 +52,12 @@ export default function RcmPortfolioSections() {
               <CardContent className="space-y-4">
                 {study.tools.length > 0 && (
                   <div>
-                    <h4 className="mb-2 text-sm font-semibold text-foreground">Tools</h4>
+                    <h4 className="mb-2 text-sm font-semibold text-foreground">
+                      Tools
+                    </h4>
                     <div className="flex flex-wrap gap-2">
-                      {study.tools.map((tool, toolIndex) => (
-                        <Badge key={toolIndex} variant="secondary">
+                      {study.tools.map((tool) => (
+                        <Badge key={tool} variant="secondary">
                           {tool}
                         </Badge>
                       ))}
@@ -57,9 +71,9 @@ export default function RcmPortfolioSections() {
                       What I Did
                     </h4>
                     <ul className="space-y-1.5">
-                      {study.responsibilities.map((resp, respIndex) => (
+                      {study.responsibilities.map((resp) => (
                         <li
-                          key={respIndex}
+                          key={resp}
                           className="flex gap-2 text-sm text-muted-foreground"
                         >
                           <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
@@ -72,11 +86,13 @@ export default function RcmPortfolioSections() {
 
                 {study.impact.length > 0 && (
                   <div>
-                    <h4 className="mb-2 text-sm font-semibold text-foreground">Impact</h4>
+                    <h4 className="mb-2 text-sm font-semibold text-foreground">
+                      Impact
+                    </h4>
                     <ul className="space-y-1.5">
-                      {study.impact.map((item, itemIndex) => (
+                      {study.impact.map((item) => (
                         <li
-                          key={itemIndex}
+                          key={item}
                           className="flex gap-2 text-sm text-muted-foreground"
                         >
                           <TrendingUp className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
@@ -89,7 +105,9 @@ export default function RcmPortfolioSections() {
 
                 <div className="pt-2 border-t border-border/50">
                   <p className="text-xs text-muted-foreground italic">
-                    <span className="font-medium text-foreground">Portfolio Value:</span>{' '}
+                    <span className="font-medium text-foreground">
+                      Portfolio Value:
+                    </span>{" "}
                     {study.portfolioValue}
                   </p>
                 </div>
@@ -100,7 +118,11 @@ export default function RcmPortfolioSections() {
       </SectionShell>
 
       {/* Systems & Tools */}
-      <SectionShell id="systems-tools" title="Systems & Tools" className="bg-muted/20">
+      <SectionShell
+        id="systems-tools"
+        title="Systems & Tools"
+        className="bg-muted/20"
+      >
         <Card className="transition-all duration-200 hover:shadow-md">
           <CardHeader>
             <div className="flex items-center gap-2">
@@ -113,8 +135,8 @@ export default function RcmPortfolioSections() {
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
-              {rcmSections.systemsTools.map((tool, index) => (
-                <Badge key={index} variant="secondary" className="text-sm">
+              {rcmSections.systemsTools.map((tool) => (
+                <Badge key={tool} variant="secondary" className="text-sm">
                   {tool}
                 </Badge>
               ))}
@@ -137,9 +159,9 @@ export default function RcmPortfolioSections() {
           </CardHeader>
           <CardContent>
             <div className="grid gap-3 sm:grid-cols-2">
-              {rcmSections.billingWorkflows.map((workflow, index) => (
+              {rcmSections.billingWorkflows.map((workflow) => (
                 <div
-                  key={index}
+                  key={workflow}
                   className="flex items-center gap-2 rounded-md border border-border/50 bg-muted/30 p-3 transition-colors hover:bg-muted/50"
                 >
                   <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
@@ -152,7 +174,11 @@ export default function RcmPortfolioSections() {
       </SectionShell>
 
       {/* Process Improvements */}
-      <SectionShell id="process-improvements" title="Process Improvements" className="bg-muted/20">
+      <SectionShell
+        id="process-improvements"
+        title="Process Improvements"
+        className="bg-muted/20"
+      >
         <Card className="transition-all duration-200 hover:shadow-md">
           <CardHeader>
             <div className="flex items-center gap-2">
@@ -165,8 +191,11 @@ export default function RcmPortfolioSections() {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
-              {rcmSections.processImprovements.map((improvement, index) => (
-                <li key={index} className="flex gap-2 text-sm text-muted-foreground">
+              {rcmSections.processImprovements.map((improvement) => (
+                <li
+                  key={improvement}
+                  className="flex gap-2 text-sm text-muted-foreground"
+                >
                   <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
                   <span>{improvement}</span>
                 </li>
@@ -190,9 +219,9 @@ export default function RcmPortfolioSections() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {rcmSections.techBillingSkills.map((skill, index) => (
+              {rcmSections.techBillingSkills.map((skill) => (
                 <div
-                  key={index}
+                  key={skill}
                   className="flex items-center gap-2 rounded-md border border-primary/20 bg-background/80 p-3 transition-colors hover:bg-background"
                 >
                   <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
@@ -202,9 +231,10 @@ export default function RcmPortfolioSections() {
             </div>
             <div className="mt-4 rounded-md bg-primary/10 p-4">
               <p className="text-sm text-foreground">
-                <span className="font-semibold">Differentiator:</span> This combination of
-                billing expertise and technical skills positions me uniquely to bridge the gap
-                between healthcare operations and technology solutions.
+                <span className="font-semibold">Differentiator:</span> This
+                combination of billing expertise and technical skills positions
+                me uniquely to bridge the gap between healthcare operations and
+                technology solutions.
               </p>
             </div>
           </CardContent>

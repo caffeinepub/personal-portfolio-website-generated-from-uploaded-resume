@@ -1,47 +1,58 @@
-import { useState } from 'react';
-import { Menu, X, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Mail, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 export default function TopNav() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'RCM Case Studies', href: '#rcm-case-studies' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Certifications', href: '#certifications' },
-    { label: 'Education', href: '#education' },
-    { label: 'Contact', href: '#contact' },
+    { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
+    { label: "RCM Case Studies", href: "#rcm-case-studies" },
+    { label: "Skills", href: "#skills" },
+    { label: "Certifications", href: "#certifications" },
+    { label: "Education", href: "#education" },
+    { label: "Contact", href: "#contact" },
   ];
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
     }
   };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between gap-4">
+      <div className="container flex h-14 items-center justify-between gap-4">
         <button
-          onClick={() => scrollToSection('#about')}
+          type="button"
+          onClick={() => scrollToSection("#about")}
           className="flex items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
         >
-          <img src="/assets/generated/portfolio-logo.dim_512x512.png" alt="Logo" className="h-8 w-8" />
-          <span className="text-lg font-semibold">Portfolio</span>
+          <img
+            src="/assets/generated/portfolio-logo.dim_512x512.png"
+            alt="Logo"
+            className="h-6 w-6"
+          />
+          <span className="text-base font-semibold">Portfolio</span>
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
             <button
+              type="button"
               key={item.href}
               onClick={() => scrollToSection(item.href)}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+              className="px-2.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
             >
               {item.label}
             </button>
@@ -51,7 +62,7 @@ export default function TopNav() {
         <div className="flex items-center gap-2">
           <Button
             size="sm"
-            onClick={() => scrollToSection('#contact')}
+            onClick={() => scrollToSection("#contact")}
             className="hidden sm:inline-flex transition-all hover:shadow-md"
           >
             <Mail className="mr-2 h-4 w-4" />
@@ -71,6 +82,7 @@ export default function TopNav() {
                 {navItems.map((item) => (
                   <SheetClose key={item.href} asChild>
                     <button
+                      type="button"
                       onClick={() => scrollToSection(item.href)}
                       className="text-left text-base font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-muted px-3 py-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >

@@ -1,20 +1,33 @@
-import { ExternalLink, Github } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import SectionShell from './SectionShell';
-import { resumeContent } from '../../content/resumeContent';
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ExternalLink, Github } from "lucide-react";
+import { resumeContent } from "../../content/resumeContent";
+import SectionShell from "./SectionShell";
 
 export default function ProjectsSection() {
   return (
-    <SectionShell id="projects" title="Technical Projects" className="bg-muted/20">
+    <SectionShell
+      id="projects"
+      title="Technical Projects"
+      className="bg-muted/20"
+    >
       <div className="mb-6 text-center">
         <p className="text-sm text-muted-foreground">
           Additional technical projects showcasing development skills
         </p>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
-        {resumeContent.projects.map((project, index) => (
-          <Card key={index} className="flex flex-col transition-all duration-200 hover:shadow-lg hover:border-primary/30">
+        {resumeContent.projects.map((project) => (
+          <Card
+            key={project.title}
+            className="flex flex-col transition-all duration-200 hover:shadow-lg hover:border-primary/30"
+          >
             <CardHeader>
               <div className="flex items-start justify-between gap-2">
                 <CardTitle className="text-xl">{project.title}</CardTitle>
@@ -47,16 +60,19 @@ export default function ProjectsSection() {
             </CardHeader>
             <CardContent className="flex-1">
               <ul className="mb-4 space-y-2">
-                {project.bullets.map((bullet, bulletIndex) => (
-                  <li key={bulletIndex} className="flex gap-2 text-sm text-muted-foreground">
+                {project.bullets.map((bullet) => (
+                  <li
+                    key={bullet}
+                    className="flex gap-2 text-sm text-muted-foreground"
+                  >
                     <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
                     <span>{bullet}</span>
                   </li>
                 ))}
               </ul>
               <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech, techIndex) => (
-                  <Badge key={techIndex} variant="secondary">
+                {project.technologies.map((tech) => (
+                  <Badge key={tech} variant="secondary">
                     {tech}
                   </Badge>
                 ))}

@@ -1,15 +1,15 @@
-import TopNav from '../components/portfolio/TopNav';
-import HeroSection from '../components/portfolio/HeroSection';
-import HighlightsSection from '../components/portfolio/HighlightsSection';
-import ExperienceSection from '../components/portfolio/ExperienceSection';
-import RcmPortfolioSections from '../components/portfolio/RcmPortfolioSections';
-import ProjectsSection from '../components/portfolio/ProjectsSection';
-import SkillsSection from '../components/portfolio/SkillsSection';
-import CertificationsSection from '../components/portfolio/CertificationsSection';
-import EducationSection from '../components/portfolio/EducationSection';
-import LanguagesSection from '../components/portfolio/LanguagesSection';
-import ContactSection from '../components/portfolio/ContactSection';
-import Footer from '../components/portfolio/Footer';
+import CertificationsSection from "../components/portfolio/CertificationsSection";
+import ContactSection from "../components/portfolio/ContactSection";
+import EducationSection from "../components/portfolio/EducationSection";
+import ExperienceSection from "../components/portfolio/ExperienceSection";
+import Footer from "../components/portfolio/Footer";
+import HeroSection from "../components/portfolio/HeroSection";
+import HighlightsSection from "../components/portfolio/HighlightsSection";
+import LanguagesSection from "../components/portfolio/LanguagesSection";
+import ProjectsSection from "../components/portfolio/ProjectsSection";
+import RcmPortfolioSections from "../components/portfolio/RcmPortfolioSections";
+import SkillsSection from "../components/portfolio/SkillsSection";
+import TopNav from "../components/portfolio/TopNav";
 
 export default function PortfolioPage() {
   return (
